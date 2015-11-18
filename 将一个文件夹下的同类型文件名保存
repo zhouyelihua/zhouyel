@@ -1,0 +1,18 @@
+这里采用的是python实现的将一个文件夹下的全部后缀相同的文件名保存。
+最常见的是lib文件夹中的lib文件添加到vs的附加依赖项中。
+```python
+import os.path  
+import time  
+import glob  
+from os import rename  
+      
+name_time_list=[]  
+for filename in glob.glob('*.lib'):  
+    name_time_list.append((time.ctime(os.path.getmtime(filename)),filename))  
+name_time_list.sort()  
+f = open('file.txt', 'w')
+for i in range(len(name_time_list)):  
+    f.write(name_time_list[i][1]+'\n') 
+f.close()
+
+```
